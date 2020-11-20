@@ -1,0 +1,33 @@
+Importing Libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.cluster import KMeans
+Importing iris dataset
+iris=datasets.load_iris()
+iris_df=pd.DataFrame(iris.data,columns=iris.feature_names)
+iris_df.head()
+Sum of Squares of Errors
+
+x=iris_df.iloc[:,[0,1,2,3]]
+
+SSE=[]
+
+Krange=np.arange(1,11)
+
+for k in Krange:
+    KM=KMeans(n_clusters=k)
+    KM.fit(x)
+    SSE.append(KM.inertia_)
+
+SSE 
+
+Elbow Curve
+
+plt.plot(Krange,SSE)
+plt.xlabel('K-MEANS')
+plt.ylabel("CLUSTERS")
+plt.title("ELBOW CURVE")
+
+Inference: From the above curve we say that k=3 is the optimum number of cluster 
